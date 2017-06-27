@@ -1,2 +1,8 @@
 # PandasMongoDB
-Store Pandas objects in a MongoDB database
+
+
+## Installation
+```python
+pip install git+http://github.com/tschm/PandasMongoDB.git
+```
+
