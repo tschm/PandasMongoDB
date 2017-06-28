@@ -1,5 +1,6 @@
 # PandasMongoDB
 
+Store your Pandas objects in a database.
 
 ## Installation
 ```python
@@ -47,5 +48,4 @@ Rather than converting a Frame into a dictionary we concert the frame into a mas
 We store essentially only links to files in the database. We rely here on a technology called GridFS.
 All of this happens in the background and is abstracted away using the FileField of MongoEngine.
 
-We offer only a tiny subset of the arctic project but provide a very lightweight solution.
-We should also admit that the arctic project is doing all sorts of clever compression with the Streams it creates.
+We offer only a tiny subset of the arctic project in this lightweight solution.
