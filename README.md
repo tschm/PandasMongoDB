@@ -36,3 +36,16 @@ if __name__ == '__main__':
     g = store(name="random series", object=pd.Series(index=[1,2,3], data=[1,2,3]))
     print(load(name="random series").frame)
 ```
+## Concept
+It is possible to convert Pandas DataFrames into dictionaries (e.g. Mongo Documents).
+However, the sad truth is that MongoDB is rather slow when performing queries over thousands of documents.
+There is also an upper limit on the size of a document. It's currently 16MB. This makes
+MongoDB often a poor choice for timeseries data. 
+
+Here we go a different approach following the arctic project released by Man AHL.
+Rather than converting a Frame into a dictionary we concert the frame into a massive ByteStream.
+We store essentially only links to files in the database. We rely here on a technology called GridFS.
+All of this happens in the background and is abstracted away using the FileField of MongoEngine.
+
+We offer only a tiny subset of the arctic project but provide a very lightweight solution.
+We should also admit that the arctic project is doing all sorts of clever compression with the Streams it creates.
