@@ -31,7 +31,8 @@ if __name__ == '__main__':
     f = load(name="history")
     print(f.frame)
     print(f.metadata)
-
+    
+    # works also for a Series and without any meta-data
     g = store(name="random series", object=pd.Series(index=[1,2,3], data=[1,2,3]))
     print(load(name="random series").frame)
 ```
