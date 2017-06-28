@@ -18,5 +18,6 @@ if __name__ == '__main__':
     print(f.frame)
     print(f.metadata)
 
+    # also works for a series and without meta-data
     g = store(name="random series", object=pd.Series(index=[1,2,3], data=[1,2,3]))
     print(load(name="random series").frame)
