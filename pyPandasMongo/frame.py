@@ -5,16 +5,14 @@ from io import BytesIO
 
 
 def store(name, object, metadata=None):
-    f = load(name)
-    f.put(frame=object)
-    f.update(metadata=metadata)
-    f.reload()
-    return f
+    Frame.objects(name=name).update_one(name=name, metadata=metadata, upsert=True)
+    return Frame.objects(name=name).first().put(frame=object)
 
 
 def load(name):
-    Frame.objects(name=name).update_one(name=name, upsert=True)
-    return Frame.objects(name=name).first()
+    f = Frame.objects(name=name).first()
+    assert f, "The frame object {name} does not exist".format(name=name)
+    return f
 
 
 # I would love to hide this class better
@@ -44,3 +42,4 @@ class Frame(Document):
             self.data.close()
 
         self.save()
+        return self.reload()
